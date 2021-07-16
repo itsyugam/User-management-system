@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block body%}
+<div class="forgotcard">
+    <div class="fleft">
+        <div class="lavatar">
+            <img src="../static/images/forgot.png" class="forgotav">
+        </div>
+    </div>
+
+    <div class="fright">
+        <h2 class="forgotlabel">Forgot Password</h2>
+        <br>
+        <div class="ferror" id="ferror"></div>
+        <br>
+        <div id="getName">
+        <form method="POST" onsubmit="return validatename()">
+            <input type="text" placeholder="username" class="fusername" name='name' id='name'>
+            <hr class="fline">
+            <br>
+            <br>
+            <input type='submit' class="contbtn" id='Submit' value="Continue" name='submit'>
+        </form>
+        <button onclick='home()' class="cancelbtn">Login</button>
+    </div>
+    <div id='question'>
+        <form method="POST" onsubmit="return validateAns()">
+            <h2 id="fuserques" class='fuserques'>{{Ques}}</h2>
+            <input type="text" placeholder="ans" class="fuserans" name="ans" id='ans'>
+            <hr class="fline">
+            <br><br>
+            <input type='submit' class="contbtn" id='Submit' value="Verify" name='submit'>
+        </form>
+        <button onclick='home()' class="cancelbtn">Cancel</button>
+    </div>
+        
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    var x='{{Ques}}';
+    if(x.length==0){
+         document.getElementById("question").style.display="none";
+         document.getElementById("getName").style.display="block";
+    }
+    else{
+        document.getElementById("getName").style.display="none";
+        document.getElementById("question").style.display="block";
+    }
+    ferror=document.getElementById("ferror");
+    if(document.getElementById('Submit').value=='Continue'){
+    if ('{{message}}' != '') {
+        if('{{message}}' == '0'){
+            swal("Server issue", "try again...",'error') 
+        }
+        else if('{{message}}' == '1'){
+            swal('Password Changed','Mail containing new pass will be send','success')
+        }
+        else{
+        ferror.style.display = "block";
+        ferror.innerText = '{{message}}';
+        }
+    }
+}
+else{
+    if ('{{message}}' != '') {
+        if('{{message}}' == '0'){
+            swal("Server issue", "try again...",'error') 
+        }
+        else{
+            ferror.style.display = "block";
+            ferror.innerText = '{{message}}';
+        }
+    }
+}
+
+    function home() {
+        window.location.href = '/';
+    };
+
+    function validatename() {
+        name=document.getElementById("name").value;
+        if (name=="") {
+            ferror.style.display = "block";
+            ferror.innerText = "oops!Field is empty!";
+            return false
+        }
+        else
+        {
+            return true
+        }
+    }
+function validateAns() {
+    ans=document.getElementById("ans").value;
+        if (ans=="") {
+            ferror.style.display = "block";
+            ferror.innerText = "oops!Field is empty!";
+            return false
+        }
+        else{
+            return true
+        }
+    }
+</script>
+{% endblock %}

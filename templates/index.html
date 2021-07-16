@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block body%}
+<div class="logincard">
+    <div class="lleft">
+        <div class="loginavatar">
+            <img src="../static/images/1.png" class="av1">
+            <img src="../static/images/2.png" class="av2">
+            <img src="../static/images/1.png" class="av3">
+        </div>
+    </div>
+
+    <div class="lright">
+        <h2 class="loginlabel">LOGIN</h2>
+        <br>
+        <div id="loginerror"></div>
+        <form method="POST" onsubmit="return validate()">
+            <input type="text" placeholder="username" class="lusername" name='username' id='username'>
+            <hr class="fline">
+            <input type="password" placeholder="password" class="lpassword" name='password' id='password'>
+            <hr class="fline">
+            <br><br>
+            <input type="submit" class="loginbtn" value="Submit">
+        </form>
+        <br><br>
+        <a href='/forgot'><button class="forgotbtn">Forgot Password</button></a>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    var loginerror = document.getElementById("loginerror");
+    if ('{{message}}' != '') {
+        if ('{{message}}' == '1'){ 
+            swal("Login Successfull", "redirecting...","success",{button:false}) 
+        }
+        else if('{{message}}' == '0'){
+            swal("Server issue", "try again...",'error') 
+        }
+        else{
+        loginerror.style.display = "block";
+        loginerror.innerText = '{{message}}';
+        }
+    }
+    function validate() {
+        user = document.getElementById("username").value;
+        passwd = document.getElementById("password").value;
+        if (user == "" || passwd == "") {
+            loginerror.style.display = "block";
+            loginerror.innerText = "OOPs , fields are empty!";
+            return false
+        }
+        else {
+            return true
+        }
+    };
+</script>
+{% endblock %}

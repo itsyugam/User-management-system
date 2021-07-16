@@ -1,0 +1,434 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "roboto", sans-serif;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding-left: 8%;
+  padding-right: 8%;
+  box-sizing: border-box;
+}
+
+nav {
+  /* background-color: coral; */
+  color: #404040;
+  margin-top: 20px;
+  display: flex;
+  text-align: center;
+  padding: 12px 0;
+}
+
+nav ul {
+  flex: 1;
+  text-align: right;
+}
+
+nav ul li {
+  display: inline-block;
+  list-style: none;
+  font-weight: 700;
+  margin-top: 7px;
+  margin-right: 40px;
+}
+
+.logoutbtn {
+  font-weight: 700;
+  font-size: 1rem;
+  border: 2px solid crimson;
+  padding: 6px 25px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.logoutbtn:hover {
+  background-color: crimson;
+  color: white;
+  transition: 0.3s;
+}
+
+.dashboard {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* background-color: lightblue; */
+}
+
+.leftblock {
+  flex-basis: 50%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  /* background-color: yellow; */
+}
+
+.rightblock {
+  /* background-color: orange; */
+  flex-basis: 50%;
+  margin-top: 30px;
+  min-width: 300px;
+  margin-bottom: 30px;
+}
+
+.leftblock .introtitle {
+  display: block;
+  width: fit-content;
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 50px;
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  animation: text_reveal 0.5s ease forwards;
+  animation-delay: 0.5s;
+}
+.introtitle h1 span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: #404040;
+  animation: text_reveal_box 0.5s ease;
+  animation-delay: 0.5s;
+}
+
+.introtitle h1 {
+  animation: text_reveal_name 0.5s ease forwards;
+  animation-delay: 0.8s;
+}
+
+.leftblock .cardBox {
+  width: 80%;
+  border: 5px solid #404040;
+  -webkit-transform-origin: perspective(350px) rotateX(15deg);
+}
+
+.leftblock .card {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  margin: 1rem;
+  border-radius: 20px;
+  justify-content: space-around;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.leftblock .card .numbers {
+  position: relative;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+.leftblock .card .cardName {
+  color: darkslategray;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.leftblock .card .iconBox {
+  color: darkslategray;
+  font-size: 2.5rem;
+  margin-top: 5px;
+}
+
+.rightblock .officeimage {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@keyframes text_reveal_box {
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0;
+    left: 100%;
+  }
+}
+
+@keyframes text_reveal {
+  100% {
+    color: white;
+  }
+}
+
+@keyframes text_reveal_name {
+  100% {
+    color: #404040;
+    font-weight: 800;
+  }
+}
+
+/* _____________________________________ Superadmin section  */
+
+.superadmin-area {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.admin-area {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.user-area {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.tablename {
+  background-color:#F5FCFF;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  display: flex;
+  color: #404040;
+  text-transform: uppercase;
+  justify-content: space-around;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  align-items:center;
+  padding: 12px 0;
+}
+
+.addbtn {
+  font-weight: 700;
+  display:inline-block;
+  margin-bottom:10px;
+  font-size: 1rem;
+  border: 2px solid dodgerblue;
+  padding: 6px 25px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.addbtn:hover {
+  background-color: dodgerblue;
+  color: white;
+  transition: 0.3s;
+  transition-property: background-color, color;
+}
+
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+  font-family: sans-serif;
+}
+
+td,th{
+  border: 1px solid #404040;
+  padding: 8px;
+  text-align:center;
+}
+
+th{
+  font-weight: bold;
+  text-transform: uppercase;
+  color:white;
+  background-color: #404040;
+}
+
+tr{
+  font-weight: bold;
+  color:#404040;
+}
+
+tr:hover{
+  font-weight: bold;
+  /* color:white; */
+  /* background-color: #808080; */
+}
+
+tr:nth-child(even){
+  background-color:#dddddd;
+}
+
+
+tr:nth-child(even):hover{
+  font-weight: bold;
+  /* color:white; */
+  /* background-color: #959595; */
+}
+
+
+.deletebtn {
+  font-weight: 700;
+  display:inline-block;
+  margin-bottom:10px;
+  color:#404040;
+  font-size: 1.4rem;
+  background-color: transparent;
+  cursor: pointer;
+  border:none;
+}
+
+.deletebtn:hover {
+  color:red;
+  transition: 0.3s;
+}
+
+.editbtn {
+  font-weight: 700;
+  display:inline-block;
+  margin-bottom:10px;
+  color:#404040;
+  padding:2px;
+  font-size: 1.4rem;
+  background-color: transparent;
+  cursor: pointer;
+  border:none;
+}
+
+.editbtn:hover {
+  color:darkblue;
+  transition: 0.3s;
+
+}
+/* _____________________________________________________________ */
+ 
+.adminpopup ,  .userpopup , .superadminpopupadd{
+  position: fixed;
+  top:0;
+  visibility: hidden;
+  opacity: 0;
+  left:0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: visibility 0.1s opacity 0.1s;
+}
+
+
+.admin-bg-active , .superadminadd-bg-active , .user-bg-active{
+  visibility: visible;
+  opacity: 1;
+}
+
+.adminaddpopup , .superadminpopup_add , .useraddpopup{
+  position:relative;
+  background-color: white;
+  width: 30%;
+  height: auto; 
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.adminclose , .superadminaddpopupclose , .userclose{
+  position: absolute;
+  top: 10px;
+  width: 40px;
+  text-align:center;
+  margin-right:15px;
+  font-size:1.5rem;
+  padding:5px;
+  color:white;
+  background-color:red;
+  border: 2px solid red;
+  right: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.adminaddpopup input , .superadminpopupadd input , .useraddpopup input{
+  padding:10px;
+  text-align:center;
+  font-size: 1rem;
+  font-weight: bold;
+  border:1px solid black;
+}
+
+.adminerror , .superadminadderror ,.usererror{
+  color:red;
+}
+
+
+/* __________________________________admin role popup */
+.adminrolepopup , .superadminpopup{
+  position: fixed;
+  top:0;
+  visibility: hidden;
+  opacity: 0;
+  left:0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: visibility 0.1s opacity 0.1s;
+}
+
+.adminrole-bg-active , .superadmin-bg-active{
+  visibility: visible;
+  opacity: 1;
+}
+
+.admineditpopup , .superadmineditpopup{
+  position:relative;
+  background-color: white;
+  width: 30%;
+  height: auto; 
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.adminroleclose , .superadminclose{
+  position: absolute;
+  top: 10px;
+  width: 40px;
+  text-align:center;
+  margin-right:15px;
+  font-size:1.5rem;
+  padding:5px;
+  color:white;
+  background-color:red;
+  border: 2px solid red;
+  right: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.admineditpopup input , .superadmineditpopup input{
+  padding:10px;
+  text-align:center;
+  font-size: 1rem;
+  font-weight: bold;
+  border:1px solid black;
+}
+
+.adminroleselect , .superadminroleselect{
+  width: 150px;
+  font-size:1rem;
+  color: #404040; 
+  padding:20px;
+}
+
+.adminroleerror, .superadminerror{
+  color:red;
+}
+
+/* _____________________ user question select  css */
+
+.user_ques, .admin_ques , .superadmin_ques{
+  padding: 10px;
+  font-size:1rem;
+  text-align: center;
+  justify-content: center;
+  color: #808080;
+  font-weight: bold;
+  border: 1px solid black;
+}

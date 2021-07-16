@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pannel</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="../static/css/home.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body onload="showPage()">
+  <div class="container">
+    
+    <!--   NAVIGATION     -->
+    <nav>
+      <h1 class="logo">User Management</h1>
+      <ul>
+        <li class="role">{{name}}({{role}})</li>
+      </ul>
+      <button class="logoutbtn" id='logout'>Logout</button>
+    </nav>
+
+    <section class="dashboard">
+      <div class="leftblock">
+        <div class="introtitle">
+          <h1>Get Updated<span></span></h1>
+        </div>
+        <div class="cardBox">
+          <div class="card">
+            <div>
+              <div class="numbers" id='sno'>{{count[0]}}</div>
+              <div class="cardName">Superadmins</div>
+            </div>
+            <div class="iconBox">
+              <i class="fas fa-user-shield"></i>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="numbers" id='ano'>{{count[1]}}</div>
+              <div class="cardName">Admins</div>
+            </div>
+            <div class="iconBox">
+              <i class="fas fa-user-cog"></i>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="numbers" id='uno'>{{count[2]}}</div>
+              <div class="cardName">Users</div>
+            </div>
+            <div class="iconBox">
+              <i class="fas fa-users"></i>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="rightblock">
+        <img src="../static/images/usermanage.gif" alt="office_image" class="officeimage">
+      </div>
+    </section>
+
+
+    <section class="superadmin-area" style="margin-top:50px;">
+      <div class="tablename">
+        <div class="tb-left">
+          Superadmins
+        </div>
+        <div class="tb-right" id="superadminadd">
+          <button id='addsuperadmin' class="addbtn superadminaddbtn openaddpop" >+ Add</button>
+        </div>
+      </div>
+      <div class="tableformat">
+        <table>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Name</th>
+              <th>Email Id</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody class="superadmintable">
+            {% if role == 'superadmin' %}
+            {% for i in range(count[0])-%}
+            <tr id='row-{{superadmins[i][0]}}'><td>{{i+1}}</td>
+              <td>{{superadmins[i][0]}}</td>
+              <td>{{superadmins[i][1]}}</td>
+              <td>{{superadmins[i][2]}}</td>
+              <td><button class="editbtn" id='edit-{{superadmins[i][0]}}'><i class="fromsuperadmin fas fa-user-tie" onclick="editrole(this,'{{superadmins[i][0]}}')"></i></button></td>
+              </tr>
+            {% endfor %}
+            {% else %}
+            {% for i in range(count[0])-%}
+            <tr id='row-{{superadmins[i][0]}}'><td>{{i+1}}</td>
+              <td>{{superadmins[i][0]}}</td>
+              <td>{{superadmins[i][1]}}</td>
+              <td>{{superadmins[i][2]}}</td>
+              <td>NA</td>
+              </tr>
+            {% endfor %}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <section class="admin-area">
+      <div class="tablename">
+        <div class="tb-left">
+          Admins
+        </div>
+        <div class="tb-right" id="adminadd">
+          <button id="addadmin" class="addbtn adminaddbtn openaddpop" >+ Add</button>
+        </div>
+      </div>
+      <div class="tableformat">
+        <table>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Name</th>
+              <th>Email Id</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody class="admintable">
+            {% if role == 'superadmin' %}
+            {% for i in range(count[1])-%}
+            <tr id='row-{{admins[i][0]}}'><td>{{i+1}}</td>
+              <td>{{admins[i][0]}}</td>
+              <td>{{admins[i][1]}}</td>
+              <td>{{admins[i][2]}}</td>
+              <td>
+                <button class="editbtn"><i name='{{admins[i][0]}}' class="fromadmin fas fa-user-tie" onclick="editrole(this,'{{admins[i][0]}}')"></i></button>
+                <button class="deletebtn" id='del-{{admins[i][0]}}'><i class="fas fa-trash-alt" onclick="del('{{admins[i][0]}}')"></i></button>
+              </td>
+              </tr>
+            {% endfor %}
+            {% else %}
+            {% for i in range(count[1])-%}
+            <tr id='row-{{admins[i][0]}}'><td>{{i+1}}</td>
+              <td>{{admins[i][0]}}</td>
+              <td>{{admins[i][1]}}</td>
+              <td>{{admins[i][2]}}</td>
+              <td>NA</td>
+              </tr>
+            {% endfor %}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <section class="user-area">
+      <div class="tablename">
+        <div class="tb-left">
+          Users
+        </div>
+        <div class="tb-right" id="useradd">
+          <button class="addbtn useraddbtn">+ Add</button>
+        </div>
+      </div>
+      <div class="tableformat">
+        <table>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Name</th>
+              <th>Email Id</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody class="usertable">
+            {% if role != 'user' %}
+            {% for i in range(count[2])-%}
+            <tr id='row-{{users[i][0]}}'><td>{{i+1}}</td>
+              <td>{{users[i][0]}}</td>
+              <td>{{users[i][1]}}</td>
+              <td>{{users[i][2]}}</td>
+              <td><button class="deletebtn" id='del-{{users[i][0]}}' onclick="del('{{users[i][0]}}','user')"><i class="fas fa-trash-alt"></i></button></td>
+              </tr>
+            {% endfor %}
+            {% else %}
+            {% for i in range(count[2])-%}
+            <tr id='row-{{users[i][0]}}'><td>{{i+1}}</td>
+              <td>{{users[i][0]}}</td>
+              <td>{{users[i][1]}}</td>
+              <td>{{users[i][2]}}</td>
+              <td>NA</td>
+              </tr>
+            {% endfor %}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Add popup -->
+    <div class="userpopup">
+      <div class="useraddpopup">
+        <br>
+        <h2>Add User</h2>
+        <br>
+        <h3 class="usererror"></h3>
+        <br>
+        <input type="text" id="user_name" placeholder="name">
+        <br>
+        <input type="email" id="user_email" placeholder="emailid">
+        <br>
+        <select class="user_ques">
+          <option value="Birth Place ?">Birth Place ?</option>
+          <option value="Nick name ?">Nick name ?</option>
+          <option value="Fav color ?">Fav color ?</option>
+        </select>
+        <br>
+        <input type="text" class="user_ans" placeholder="security_ans">
+        <br>
+        <button class="addbtn" id="userpopupaddbtn">Add</button>
+        <span class="close userclose">x</span> 
+      </div>
+    </div>
+    
+    <div class="adminpopup">
+      <div class="adminaddpopup">
+        <br>
+        <h2>Add Admin</h2>
+        <br>
+        <h3 class="adminerror"></h3>
+        <br>
+        <br>
+        <input type="text" id="admin_name" placeholder="name">
+        <br>
+        <br>
+        <input type="email" id="admin_email" placeholder="emailid">
+        <br>
+        <select class="admin_ques">
+          <option value="Birth Place ?">Birth Place ?</option>
+          <option value="Nick name ?">Nick name ?</option>
+          <option value="Fav color ?">Fav color ?</option>
+        </select>
+        <br>
+        <input type="text" class="admin_ans" placeholder="security_ans">
+        <br>
+        <button class="addbtn" id="adminpopupaddbtn">Add</button>
+        <span class="close adminclose">x</span> 
+      </div>
+    </div>
+  
+    <div class="superadminpopupadd">
+      <div class="superadminpopup_add">
+        <br>
+        <h2>Add Superdmin</h2>
+        <br>
+        <h3 class="superadminadderror"></h3>
+        <br>
+        <br>
+        <input type="text" id="superadmin_name" placeholder="name">
+        <br>
+        <br>
+        <input type="email" id="superadmin_email" placeholder="emailid">
+        <br>
+        <select class="superadmin_ques">
+          <option value="Birth Place ?">Birth Place ?</option>
+          <option value="Nick name ?">Nick name ?</option>
+          <option value="Fav color ?">Fav color ?</option>
+        </select>
+        <br>
+        <input type="text" class="superadmin_ans" placeholder="security_ans">
+        <br>
+        <button class="addbtn" id="superadminpopupaddbtn">Add</button>
+        <span class="close superadminaddpopupclose">x</span> 
+      </div>
+    </div>
+    
+  </div>
+    
+  </div>
+
+  
+  <!-- ________________________________________________Role Change POPUP -->
+  <div class="superadminpopup">
+    <div class="superadmineditpopup">
+      <br>
+      <h2>CHANGE ROLE</h2>
+      <br>
+      <h3 style="color:red" class="roleerror"></h3>
+      <br>
+      <select name="role" class="superadminroleselect">
+        <option value="">Choose</option>
+        <option value="admin">Admin</option>
+      </select>
+      <br>
+      <br>
+      <button class="addbtn superadminpopupeditbtn">Change</button>
+      <br>
+      <span class="close superadminclose">x</span> 
+    </div>
+  </div>
+
+  <div class="adminrolepopup">
+    <div class="admineditpopup">
+      <br>
+      <h2>CHANGE ROLE</h2>
+      <br>
+      <h3 style="color:red" class="adminroleerror"></h3>
+      <br>
+      <select name="role" class="adminroleselect">
+        <option value="">Choose</option>
+        <option value="superadmin">Superadmin</option>
+      </select>
+      <br>
+      <br>
+      <button class="addbtn adminpopuprolebtn">Change</button>
+      <br>
+      <span class="close adminroleclose">x</span> 
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="../static/js/home.js"></script>
+</body>
+</html>
