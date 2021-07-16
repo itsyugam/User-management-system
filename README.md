@@ -4,10 +4,12 @@ A web app use to manage staff of an organization and keep update of employees. A
 <img src='screenshot/screen2.PNG' width='45%'><br><br>
 <img src='screenshot/screen1.PNG' width='45%'>
 <img src='screenshot/screen3.PNG' width='45%'><br><br>
+Data flow Diagram:<br><br>
+<img src='screenshot/DFD.jpg'><br><br>
 This application is not hosted so to run this on localhost follow these steps:<br>
 * Download the zip file
 * Then extract the file in a Folder
-* Now create a database in Mysql with name 'python_13.db'
+* Now create a database in Mysql with name 'python_13.sql'
 * And then import the 'python_13.db' in that database
 * Install all the requirements:<br>
 ```pip install flask```
