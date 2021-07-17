@@ -345,5 +345,19 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="../static/js/home.js"></script>
+  <script>
+    function showPage() {
+  var role = '{{role}}';
+  if (role === "admin") {
+    adminadd.style.display = "none";
+    superadminadd.style.display='none'
+  }
+  if (role === "user") {
+    superadminadd.style.display='none'
+    adminadd.style.display = "none";
+    useradd.style.display = "none";
+  }
+}
+  </script>
 </body>
 </html>
