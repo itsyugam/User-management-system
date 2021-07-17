@@ -365,19 +365,6 @@ adminpopupclose.addEventListener("click", function () {
 });
 // ---------------------------------------------------------------------------------------
 
-function showPage() {
-  var role = '{{role}}';
-  if (role === "admin") {
-    adminadd.style.display = "none";
-    superadminadd.style.display='none'
-  }
-  if (role === "user") {
-    superadminadd.style.display='none'
-    adminadd.style.display = "none";
-    useradd.style.display = "none";
-  }
-}
-
 var name=''
 function del(name,role){
   name=name;
