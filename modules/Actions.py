@@ -70,7 +70,8 @@ class Action():
             self.connect_db()
             self.mycursor.execute(sql)
             self.mydb.commit()
-            send_message(email,rand_pswd)
+            message=f'{rand_pswd},Ques:{ques},Answer:{ans}'
+            send_message(email,message)
             self.outcome={}
             return self.outcome
         except:
